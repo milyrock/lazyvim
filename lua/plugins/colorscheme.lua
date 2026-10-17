@@ -86,6 +86,14 @@ local function fortnite_mocha()
         NeoTreeDirectoryName = { fg = colors.sky },
         NeoTreeDirectoryIcon = { fg = colors.blue },
         NeoTreeFileNameOpened = { fg = colors.green, style = { "bold" } },
+        -- Saturated diff backgrounds preserve the code's syntax colors.
+        GitSignsAddPreview = { fg = "NONE", style = {}, bg = "#1c5032" },
+        GitSignsDeleteVirtLn = { fg = "NONE", style = {}, bg = "#702530" },
+        GitSignsAddInline = { fg = "NONE", style = {}, bg = "#2c7144" },
+        GitSignsChangeInline = { fg = "NONE", style = {}, bg = "#2c7144" },
+        GitSignsDeleteInline = { fg = "NONE", style = {}, bg = "#9b3342" },
+        GitSignsDeleteVirtLnInLine = { fg = "NONE", style = {}, bg = "#9b3342" },
+        GitSignsVirtLnum = { fg = "#ff9ba8", bg = "#702530" },
         WhichKey = { fg = colors.sky, style = { "bold" } },
         WhichKeyGroup = { fg = colors.pink },
       }
