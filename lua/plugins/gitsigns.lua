@@ -49,7 +49,7 @@ local function toggle_inline(bufnr)
     vim.wo[win].relativenumber = false
     vim.wo[win].cursorline = false
   end
-  require("gitsigns").diffthis(vim.b[bufnr].git_review_base or branch_base(bufnr), { unified = true })
+  require("gitsigns").diffthis(vim.b[bufnr].git_review_base or "HEAD", { unified = true })
   if active then
     restore_inline_options(win)
   end
@@ -114,7 +114,7 @@ local function open_review(latest_commit)
   if not latest_commit then
     base = vim.b[buf].git_review_base
     if not base and vim.bo[buf].buftype == "" and vim.api.nvim_buf_get_name(buf) ~= "" then
-      base = branch_base(buf)
+      base = "HEAD"
     end
   end
   require("gitsigns").diff(base, nil, { diff = "unified", commit = latest_commit }, function(err)
@@ -180,7 +180,7 @@ return {
           end)
         end,
       })
-      opts.base = nil
+      opts.base = "HEAD"
       opts.on_attach = function(bufnr)
         if original_on_attach and original_on_attach(bufnr) == false then
           return false
@@ -199,7 +199,7 @@ return {
             if event.data and event.data.buffer == bufnr then
               vim.schedule(function()
                 if vim.api.nvim_buf_is_valid(bufnr) and not vim.b[bufnr].git_review_mode then
-                  compare(bufnr, "branch", true)
+                  compare(bufnr, "working", true)
                 end
               end)
               return true
